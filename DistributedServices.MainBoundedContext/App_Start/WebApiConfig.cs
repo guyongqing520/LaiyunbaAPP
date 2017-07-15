@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DistributedServices.MainBoundedContext.HandleError;
+using DistributedServices.MainBoundedContext.InstanceProviders;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
@@ -10,6 +12,7 @@ namespace DistributedServices.MainBoundedContext
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
+            config.Filters.Add(new ApiHandleErrorAttribute());
 
             // Web API routes
             config.MapHttpAttributeRoutes();

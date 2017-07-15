@@ -30,8 +30,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -39,8 +49,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Pool.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Regex\BodyRegex.cs" />
+    <Compile Include="Regex\EmailRegex.cs" />
+    <Compile Include="Regex\IDCardRegex.cs" />
+    <Compile Include="Regex\IPRegex.cs" />
+    <Compile Include="Regex\MobileRegex.cs" />
+    <Compile Include="Regex\NameRegex.cs" />
+    <Compile Include="Regex\NickNameRegex.cs" />
+    <Compile Include="Regex\QQRegex.cs" />
+    <Compile Include="Regex\TelePhoneRegex.cs" />
+    <Compile Include="Regex\TitleRegex.cs" />
+    <Compile Include="Sms\CodeSms.cs" />
+    <Compile Include="Sms\ParamRender.cs" />
+    <Compile Include="Sms\SendSmsResult.cs" />
+    <Compile Include="Sms\Setting.cs" />
+    <Compile Include="Sms\SmsBase.cs" />
+    <Compile Include="Utils\CharHelper.cs" />
+    <Compile Include="Utils\UrlHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

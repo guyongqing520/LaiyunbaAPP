@@ -22,7 +22,7 @@ namespace Infrastructure.Data.Seedwork
 
         #region Constructor
 
-        
+
         public Repository(IQueryableUnitOfWork unitOfWork)
         {
             if (unitOfWork == (IUnitOfWork)null)
@@ -35,7 +35,7 @@ namespace Infrastructure.Data.Seedwork
 
         #region IRepository Members
 
-        
+
         public IUnitOfWork UnitOfWork
         {
             get
@@ -57,7 +57,7 @@ namespace Infrastructure.Data.Seedwork
             }
 
         }
-        
+
         public virtual void Remove(TEntity item)
         {
             if (item != (TEntity)null)
@@ -75,7 +75,7 @@ namespace Infrastructure.Data.Seedwork
             }
         }
 
-       
+
         public virtual void TrackItem(TEntity item)
         {
             if (item != (TEntity)null)
@@ -87,7 +87,7 @@ namespace Infrastructure.Data.Seedwork
             }
         }
 
-        
+
         public virtual void Modify(TEntity item)
         {
             if (item != (TEntity)null)
@@ -99,7 +99,7 @@ namespace Infrastructure.Data.Seedwork
             }
         }
 
-       
+
         public virtual TEntity Get(Guid id)
         {
             if (id != Guid.Empty)
@@ -107,17 +107,17 @@ namespace Infrastructure.Data.Seedwork
             else
                 return null;
         }
-        
+
         public virtual IEnumerable<TEntity> GetAll()
         {
             return GetSet();
         }
-        
+
         public virtual IEnumerable<TEntity> AllMatching(ISpecification<TEntity> specification)
         {
             return GetSet().Where(specification.SatisfiedBy());
         }
-       
+
         public virtual IEnumerable<TEntity> GetPaged<KProperty>(int pageIndex, int pageCount, System.Linq.Expressions.Expression<Func<TEntity, KProperty>> orderByExpression, bool ascending)
         {
             var set = GetSet();
@@ -135,13 +135,44 @@ namespace Infrastructure.Data.Seedwork
                           .Take(pageCount);
             }
         }
-        
+
+        /// <summary>
+        /// <see cref="Domain.Seedwork.IRepository{TValueObject}"/>
+        /// </summary>
+        /// <typeparam name="S"><see cref="Domain.Seedwork.IRepository{TValueObject}"/></typeparam>
+        /// <param name="pageIndex"><see cref="Domain.Seedwork.IRepository{TValueObject}"/></param>
+        /// <param name="pageCount"><see cref="Domain.Seedwork.IRepository{TValueObject}"/></param>
+        /// <param name="orderByExpression"><see cref="Domain.Seedwork.IRepository{TValueObject}"/></param>
+        /// <param name="ascending"><see cref="Domain.Seedwork.IRepository{TValueObject}"/></param>
+        /// <returns><see cref="Domain.Seedwork.IRepository{TValueObject}"/></returns>
+        public virtual IEnumerable<TEntity> GetPaged<KProperty>(int pageIndex, int pageCount, System.Linq.Expressions.Expression<Func<TEntity, bool>> filter, System.Linq.Expressions.Expression<Func<TEntity, KProperty>> orderByExpression, bool ascending,out long total)
+        {
+            var set = GetSet();
+
+            var newSet = set.Where(filter);
+
+            total = newSet.Count();
+
+            if (ascending)
+            {
+                return newSet.OrderBy(orderByExpression)
+                          .Skip(pageCount * pageIndex)
+                          .Take(pageCount);
+            }
+            else
+            {
+                return newSet.OrderByDescending(orderByExpression)
+                          .Skip(pageCount * pageIndex)
+                          .Take(pageCount);
+            }
+        }
+
         public virtual IEnumerable<TEntity> GetFiltered(System.Linq.Expressions.Expression<Func<TEntity, bool>> filter)
         {
             return GetSet().Where(filter);
         }
 
-        
+
         public virtual void Merge(TEntity persisted, TEntity current)
         {
             _UnitOfWork.ApplyCurrentValues(persisted, current);
@@ -151,7 +182,7 @@ namespace Infrastructure.Data.Seedwork
 
         #region IDisposable Members
 
-        
+
         public void Dispose()
         {
             if (_UnitOfWork != null)

@@ -30,32 +30,95 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BankingModule\Aggregates\BankAccountAgg\BankAccountActivity.cs" />
+    <Compile Include="BankingModule\Aggregates\BankAccountAgg\BankAccount.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\Messages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Messages.resx</DependentUpon>
+    </Compile>
+    <Compile Include="WLModule\Aggregates\AddressAgg\Area.cs" />
+    <Compile Include="WLModule\Aggregates\AddressAgg\City.cs" />
+    <Compile Include="WLModule\Aggregates\AddressAgg\IProvinceRepository.cs" />
+    <Compile Include="WLModule\Aggregates\AddressAgg\ICityRepository.cs" />
+    <Compile Include="WLModule\Aggregates\AddressAgg\IAreaRepository.cs" />
+    <Compile Include="WLModule\Aggregates\AddressAgg\Province.cs" />
+    <Compile Include="WLModule\Aggregates\DriverWayAgg\IDriverWayRepository.cs" />
+    <Compile Include="WLModule\Aggregates\DriverWayAgg\DriverWayFactory.cs" />
+    <Compile Include="WLModule\Aggregates\CallLogAgg\ICallLogRepository.cs" />
+    <Compile Include="WLModule\Aggregates\CallLogAgg\CallLog.cs" />
+    <Compile Include="WLModule\Aggregates\CallLogAgg\CallLogFactory.cs" />
+    <Compile Include="WLModule\Aggregates\PraiseAgg\Praise.cs" />
+    <Compile Include="WLModule\Aggregates\PraiseAgg\PraiseFactory.cs" />
+    <Compile Include="WLModule\Aggregates\PraiseAgg\IPraiseRepository.cs" />
+    <Compile Include="WLModule\Aggregates\LoginLogAgg\ILoginLogRepository.cs" />
+    <Compile Include="WLModule\Aggregates\LoginLogAgg\LoginLog.cs" />
+    <Compile Include="WLModule\Aggregates\LoginLogAgg\LoginLogFactory.cs" />
     <Compile Include="WLModule\Aggregates\OrderAgg\Order.cs" />
-    <Compile Include="WLModule\Aggregates\ProductAgg\DriverProudct.cs" />
+    <Compile Include="WLModule\Aggregates\DriverWayAgg\DriverWay.cs" />
+    <Compile Include="WLModule\Aggregates\OrderAgg\OrderState.cs" />
+    <Compile Include="WLModule\Aggregates\MsgAgg\IMsgRepository.cs" />
+    <Compile Include="WLModule\Aggregates\MsgAgg\Msg.cs" />
+    <Compile Include="WLModule\Aggregates\MsgAgg\MsgFactory.cs" />
+    <Compile Include="WLModule\Aggregates\FavoriteAgg\IFavoriteRepository.cs" />
+    <Compile Include="WLModule\Aggregates\FavoriteAgg\Favorite.cs" />
+    <Compile Include="WLModule\Aggregates\FavoriteAgg\FavoriteFactory.cs" />
+    <Compile Include="WLModule\Aggregates\VipAgg\IVipRepository.cs" />
+    <Compile Include="WLModule\Aggregates\VipAgg\Vip.cs" />
+    <Compile Include="WLModule\Aggregates\VipAgg\VipFactory.cs" />
+    <Compile Include="WLModule\Aggregates\SmsAgg\ISmsRepository.cs" />
+    <Compile Include="WLModule\Aggregates\SmsAgg\Sms.cs" />
+    <Compile Include="WLModule\Aggregates\SmsAgg\SmsFactory.cs" />
+    <Compile Include="WLModule\Aggregates\SpecwayAgg\Specway.cs" />
+    <Compile Include="WLModule\Aggregates\SpecwayAgg\SpecwayFactory.cs" />
+    <Compile Include="WLModule\Aggregates\SpecwayAgg\ISpecwayRepository.cs" />
+    <Compile Include="WLModule\Aggregates\ProductAgg\GooderProudctFactory.cs" />
     <Compile Include="WLModule\Aggregates\ProductAgg\GooderProudct.cs" />
-    <Compile Include="WLModule\Aggregates\UserInfoAgg\Account.cs" />
-    <Compile Include="WLModule\Aggregates\UserInfoAgg\AuthInfo.cs" />
-    <Compile Include="WLModule\Aggregates\UserInfoAgg\CarLocation.cs" />
-    <Compile Include="WLModule\Aggregates\UserInfoAgg\UserType.cs" />
+    <Compile Include="WLModule\Aggregates\ProductAgg\IProudctRepository.cs" />
+    <Compile Include="WLModule\Aggregates\AccountAgg\Account.cs" />
+    <Compile Include="WLModule\Aggregates\AccountAgg\AccountFactory.cs" />
+    <Compile Include="WLModule\Aggregates\AccountAgg\DriverAuthInfo.cs" />
+    <Compile Include="WLModule\Aggregates\AccountAgg\GooderAuthInfo.cs" />
+    <Compile Include="WLModule\Aggregates\AccountAgg\IAccountRepository.cs" />
+    <Compile Include="WLModule\Aggregates\AccountAgg\Location.cs" />
+    <Compile Include="WLModule\Aggregates\AccountAgg\UserType.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="WLModule\Services\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Domain.Seedwork\Domain.Seedwork.csproj">
       <Project>{61717fd0-d03a-4618-882f-1ce9e10749e3}</Project>
       <Name>Domain.Seedwork</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Messages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
